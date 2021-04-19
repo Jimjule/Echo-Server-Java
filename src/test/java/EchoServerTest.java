@@ -1,32 +1,17 @@
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.net.Socket;
+import java.io.IOException;
+import java.net.ServerSocket;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class EchoServerTest {
-
-    @BeforeEach
-    void setUp() {
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
-
     @Test
-    public void echoServerSetupTest() {
-        Socket socket = new Socket();
-        EchoServer echoServer = new EchoServer(socket);
-        assertEquals(echoServer.echo("Hello"), "Hello");
-    }
-
-    @Test
-    public void echoServerTakesSocketTest() {
-        Socket socket = new Socket();
-        EchoServer echoServer = new EchoServer(socket);
-        assertFalse(echoServer.getSocket().isBound());
+    public void echoServerTakesServerSocketTest() throws IOException {
+        int port = 4567;
+        ServerSocket serverSocket = new ServerSocket(port);
+        EchoServer echoServer = new EchoServer(serverSocket);
+        assertTrue(echoServer.getServerSocket().isBound());
+        echoServer.closeAll();
     }
 }
