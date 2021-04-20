@@ -1,18 +1,23 @@
-import java.net.Socket;
+import java.io.IOException;
+import java.net.ServerSocket;
 
 public class EchoServer {
 
-    private Socket socket;
+    private final ServerSocket serverSocket;
 
-    public EchoServer(Socket socket) {
-        this.socket = socket;
+    public EchoServer(ServerSocket serverSocket) {
+        this.serverSocket = serverSocket;
     }
 
     public String echo(String echo) {
         return echo;
     }
 
-    public Socket getSocket() {
-        return socket;
+    public ServerSocket getServerSocket() {
+        return serverSocket;
+    }
+
+    public void closeAll() throws IOException {
+        this.serverSocket.close();
     }
 }

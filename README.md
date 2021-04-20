@@ -7,7 +7,9 @@
 
 # Testing
 
-In the console, run `./gradlew test`
+- In the console, run `./gradlew test`
+- For test coverage report, run `./gradlew jacocoTestReport`
+- Results are found in `/build/reports/jacoco/test/html/index.html`, and can be read in browser
 
 # Compiling
 
