@@ -7,6 +7,5 @@ public class Main {
         int port = 4567;
         ServerSocket serverSocket = new ServerSocket(port);
         EchoServer echoServer = new EchoServer(serverSocket);
-        echoServer.start();
     }
 }
