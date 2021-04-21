@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class EchoClientTest {
     int port = 9999;
-    EchoServer echoServer;
+    Server echoServer;
     ServerSocket serverSocket;
 
     @BeforeEach
@@ -21,7 +21,7 @@ class EchoClientTest {
 
     @Test
     public void clientMessagesServerAndGetsResponse() throws IOException {
-        String message = "Git moaning!";
+        String message = "Gid moaning!";
         Socket socket = new Socket("localhost", port);
         Client client = new EchoClientSpy();
         client.start(socket);
