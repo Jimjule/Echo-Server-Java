@@ -1,9 +1,7 @@
-import java.net.ServerSocket;
+import java.io.IOException;
 
 public interface Server {
-    void start();
-
-    ServerSocket getServerSocket();
+    void run();
 
     void respond(String response);
 }

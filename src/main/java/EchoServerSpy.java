@@ -18,7 +18,7 @@ public class EchoServerSpy implements Server {
     }
 
     @Override
-    public void start() {
+    public void run() {
         for (String message: in) {
             if (message.equals(".")) {
                 respond("Stopping.");
@@ -26,11 +26,6 @@ public class EchoServerSpy implements Server {
             }
             respond(message);
         }
-    }
-
-    @Override
-    public ServerSocket getServerSocket() {
-        return serverSocket;
     }
 
     @Override

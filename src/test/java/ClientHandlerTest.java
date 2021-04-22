@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class EchoServerTest {
+class ClientHandlerTest {
     private int port = 7777;
     private Client echoClient;
     private ServerSocket serverSocket;
@@ -33,7 +33,7 @@ class EchoServerTest {
     @Test
     public void serverEchoesInputUntilFullStop() {
         echoServer = new EchoServerSpy(serverSocket, in, out);
-        echoServer.start();
+        echoServer.run();
         assertEquals(3, out.size());
         assertEquals("Roger", out.get(0));
         assertEquals("and", out.get(1));
@@ -46,9 +46,5 @@ class EchoServerTest {
         out = new ArrayList<>();
         in = new ArrayList<>();
         echoClient.stop();
-        try {
-            echoServer.getServerSocket().close();
-        } catch (IOException ignored) {
-        }
     }
 }
