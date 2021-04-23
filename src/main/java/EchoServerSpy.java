@@ -1,10 +1,8 @@
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.ArrayList;
 
 public class EchoServerSpy implements Server {
 
-    private Socket clientSocket;
     private ArrayList<String> out;
     private ArrayList<String> in;
     private ServerSocket serverSocket;
