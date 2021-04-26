@@ -1,8 +1,10 @@
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -13,6 +15,9 @@ class EchoClientTest {
     ServerSocket serverSocket;
     Socket socket;
     Server clientHandler;
+
+    ClientOutput out;
+    ClientInput in;
 
     @BeforeEach
     public void setup() throws IOException {
@@ -25,7 +30,9 @@ class EchoClientTest {
         String message = "Gid moaning!";
         Socket socket = new Socket("localhost", port);
         Client client = new EchoClientSpy();
-        client.start(socket);
+        in = new BufferedInput(new BufferedReader(new InputStreamReader(socket.getInputStream())));
+        out = new PrintWriterOutput(new PrintWriter(socket.getOutputStream()));
+        client.start(socket, in, out);
         String response = client.sendMessage(message);
         assertEquals(response, message);
     }

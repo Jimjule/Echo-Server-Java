@@ -10,7 +10,6 @@ public class EchoServer {
     }
 
     public void start() {
-        System.out.println("Initializing...");
         while(true) {
             try {
                 new ClientHandler(this.serverSocket.accept()).start();

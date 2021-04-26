@@ -6,7 +6,7 @@ public class EchoClientSpy implements Client {
     public boolean stopIsCalled = false;
 
     @Override
-    public void start(Socket socket) {
+    public void start(Socket socket, ClientInput in, ClientOutput out) {
         startIsCalled = true;
     }
 

@@ -1,15 +1,14 @@
 import java.net.ServerSocket;
-import java.util.ArrayList;
 
 public class EchoServerSpy implements Server {
 
-    private ArrayList<String> out;
-    private ArrayList<String> in;
+    private ArrayListOutput out;
+    private ArrayListInput in;
     private ServerSocket serverSocket;
 
     public int respondCalledTimes = 0;
 
-    public EchoServerSpy(ServerSocket serverSocket, ArrayList<String> in, ArrayList<String> out) {
+    public EchoServerSpy(ServerSocket serverSocket, ArrayListInput in, ArrayListOutput out) {
         this.serverSocket = serverSocket;
         this.in = in;
         this.out = out;
@@ -17,18 +16,18 @@ public class EchoServerSpy implements Server {
 
     @Override
     public void run() {
-        for (String message: in) {
-            if (message.equals(".")) {
+        for (int i = 0; i < in.getArrayList().size(); i++) {
+            if (in.getArrayList().get(i).equals(".")) {
                 respond("Stopping.");
                 return;
             }
-            respond(message);
+            respond((String) in.getArrayList().get(i));
         }
     }
 
     @Override
     public void respond(String response) {
         respondCalledTimes++;
-        out.add(response);
+        out.write(response);
     }
 }
